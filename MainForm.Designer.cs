@@ -32,6 +32,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.userOp_label = new System.Windows.Forms.Label();
             this.quit_button = new System.Windows.Forms.Button();
+            this.LogOut_button = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,14 +80,26 @@
             this.quit_button.UseVisualStyleBackColor = true;
             this.quit_button.Click += new System.EventHandler(this.quit_button_Click);
             // 
+            // LogOut_button
+            // 
+            this.LogOut_button.Location = new System.Drawing.Point(131, 376);
+            this.LogOut_button.Name = "LogOut_button";
+            this.LogOut_button.Size = new System.Drawing.Size(115, 36);
+            this.LogOut_button.TabIndex = 4;
+            this.LogOut_button.Text = "Log Out";
+            this.LogOut_button.UseVisualStyleBackColor = true;
+            this.LogOut_button.Click += new System.EventHandler(this.LogOut_button_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 511);
             this.ControlBox = false;
+            this.Controls.Add(this.LogOut_button);
             this.Controls.Add(this.quit_button);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "大廳";
@@ -103,5 +116,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label userOp_label;
         private System.Windows.Forms.Button quit_button;
+        private System.Windows.Forms.Button LogOut_button;
     }
 }

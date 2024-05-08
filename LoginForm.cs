@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace WindowsFormsApp1
@@ -43,7 +44,7 @@ namespace WindowsFormsApp1
             Account_get.Clear();
             Password_get.Clear();
         }
-        private void Login_button_Click(object sender, EventArgs e)
+        private async void Login_button_Click(object sender, EventArgs e)
         {
             if (Account_get.TextLength == 0 || Password_get.TextLength == 0) {
                 MessageBox.Show("帳號與密碼不得為空");
@@ -51,19 +52,26 @@ namespace WindowsFormsApp1
                 string account = this.Account_get.Text;
                 string password = this.Password_get.Text;
                 string sql = "SELECT name, op FROM Data WHERE account = @account AND password = @password";
+                progressBar_Login.Visible = true;
+                for (int i = 0; i <= 100; i += 10)
+                {
+                    progressBar_Login.Value = i;
+                    System.Threading.Thread.Sleep(80); // 模擬花費時間
+                }
+                progressBar_Login.Visible = false;
 
                 try
                 {
                     using (SQLiteConnection connection = new SQLiteConnection(connectionString))
                     {
-                        connection.Open();
+                        await connection.OpenAsync();
 
                         using (SQLiteCommand command = new SQLiteCommand(sql, connection))
                         {
                             command.Parameters.AddWithValue("@account", account);
                             command.Parameters.AddWithValue("@password", password);
 
-                            using (SQLiteDataReader reader = command.ExecuteReader())
+                            using (SQLiteDataReader reader = (SQLiteDataReader)command.ExecuteReader())
                             {
                                 if (reader.Read())
                                 {
@@ -77,8 +85,8 @@ namespace WindowsFormsApp1
                                     Clear_TextBox();
 
                                     MainForm mainForm = new MainForm();
-                                    mainForm.Show();
                                     this.Hide();
+                                    mainForm.Show();
                                 }
                                 else
                                 {
@@ -116,5 +124,12 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void Register_button_Click(object sender, EventArgs e)
+        {
+            Clear_TextBox();
+            RegisterForm registerForm = new RegisterForm();
+            registerForm.Show();
+            this.Hide();
+        }
     }
 }

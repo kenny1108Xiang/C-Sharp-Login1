@@ -37,8 +37,9 @@
             this.Quit_button = new System.Windows.Forms.Button();
             this.Register_button = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.Account_get = new System.Windows.Forms.MaskedTextBox();
             this.Password_get = new System.Windows.Forms.MaskedTextBox();
+            this.Account_get = new System.Windows.Forms.MaskedTextBox();
+            this.progressBar_Login = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -126,6 +127,7 @@
             this.Register_button.TabIndex = 8;
             this.Register_button.Text = "Register";
             this.Register_button.UseVisualStyleBackColor = true;
+            this.Register_button.Click += new System.EventHandler(this.Register_button_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -145,6 +147,15 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(167, 153);
             this.tableLayoutPanel2.TabIndex = 13;
             // 
+            // Password_get
+            // 
+            this.Password_get.Location = new System.Drawing.Point(3, 99);
+            this.Password_get.Name = "Password_get";
+            this.Password_get.Size = new System.Drawing.Size(161, 22);
+            this.Password_get.TabIndex = 11;
+            this.Password_get.UseSystemPasswordChar = true;
+            this.Password_get.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Account_get_KeyPress);
+            // 
             // Account_get
             // 
             this.Account_get.Location = new System.Drawing.Point(3, 24);
@@ -153,23 +164,26 @@
             this.Account_get.TabIndex = 10;
             this.Account_get.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Account_get_KeyPress);
             // 
-            // Password_get
+            // progressBar_Login
             // 
-            this.Password_get.Location = new System.Drawing.Point(3, 99);
-            this.Password_get.Name = "Password_get";
-            this.Password_get.Size = new System.Drawing.Size(161, 22);
-            this.Password_get.TabIndex = 11;
-            this.Password_get.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Account_get_KeyPress);
+            this.progressBar_Login.Enabled = false;
+            this.progressBar_Login.Location = new System.Drawing.Point(122, 452);
+            this.progressBar_Login.Name = "progressBar_Login";
+            this.progressBar_Login.Size = new System.Drawing.Size(115, 23);
+            this.progressBar_Login.TabIndex = 14;
+            this.progressBar_Login.Visible = false;
             // 
             // Login_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 511);
+            this.Controls.Add(this.progressBar_Login);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.Hide_password);
             this.Controls.Add(this.Show_password);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Login_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -194,6 +208,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.MaskedTextBox Password_get;
         private System.Windows.Forms.MaskedTextBox Account_get;
+        private System.Windows.Forms.ProgressBar progressBar_Login;
     }
 }
 

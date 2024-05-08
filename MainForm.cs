@@ -17,17 +17,27 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
+        public void UpdateUserInfo()
+        {
+            userName_label.Text = "使用者名稱：" + Login_Form.UserName;
+            userOp_label.Text = "使用者權限：" + Login_Form.UserOp;
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
-            string userName = Login_Form.UserName;
-            string userOp = Login_Form.UserOp;
-            userName_label.Text = "使用者名稱：" + userName;
-            userOp_label.Text = "使用者權限：" + userOp;
+            UpdateUserInfo();
         }
 
         private void quit_button_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void LogOut_button_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Login_Form loginForm = new Login_Form();
+            loginForm.Show();
         }
     }
 }
