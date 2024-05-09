@@ -39,6 +39,7 @@
             this.name_get = new System.Windows.Forms.MaskedTextBox();
             this.Check_password_label = new System.Windows.Forms.Label();
             this.register_button = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -154,12 +155,21 @@
             this.register_button.UseVisualStyleBackColor = true;
             this.register_button.Click += new System.EventHandler(this.register_button_Click);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(134, 476);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(100, 23);
+            this.progressBar1.TabIndex = 3;
+            this.progressBar1.Visible = false;
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 511);
             this.ControlBox = false;
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.register_button);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.Back_to_Login_button);
@@ -186,5 +196,6 @@
         private System.Windows.Forms.MaskedTextBox account_get;
         private System.Windows.Forms.MaskedTextBox name_get;
         private System.Windows.Forms.Button register_button;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
