@@ -94,7 +94,7 @@ namespace WindowsFormsApp1
                 return;
             }
 
-            if (minNum >= maxNum || count <= 0 && (minNum <=0 || maxNum <= 0))
+            if (minNum >= maxNum || count <= 0 || minNum <=0 || maxNum <= 0)
             {
                 MessageBox.Show("輸入的範圍值有誤", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Clear_TextBox();
@@ -116,6 +116,7 @@ namespace WindowsFormsApp1
             answer_get.Enabled = true;
             commit.Enabled = true;
             answer_label.Enabled = true;
+            this.tabPage2.Parent = null;
             MessageBox.Show("開始作答", "輸入成功");
         }
 
@@ -133,6 +134,7 @@ namespace WindowsFormsApp1
                 answer_label.Enabled = false;
                 Clear_TextBox();
                 answer_get.Clear();
+                this.tabPage2.Parent = this.main_tabControl;
                 return;
             }
             else
@@ -148,6 +150,7 @@ namespace WindowsFormsApp1
                     answer_label.Enabled = false;
                     Clear_TextBox();
                     answer_get.Clear();
+                    this.tabPage2.Parent = this.main_tabControl;
                     return;
                 }
                 else
