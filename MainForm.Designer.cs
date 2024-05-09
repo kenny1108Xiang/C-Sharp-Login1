@@ -151,8 +151,9 @@ namespace WindowsFormsApp1
             // answer_get
             // 
             this.answer_get.Enabled = false;
-            this.answer_get.Location = new System.Drawing.Point(98, 186);
+            this.answer_get.Location = new System.Drawing.Point(95, 170);
             this.answer_get.Name = "answer_get";
+            this.answer_get.ReadOnly = true;
             this.answer_get.Size = new System.Drawing.Size(72, 22);
             this.answer_get.TabIndex = 0;
             // 
@@ -160,7 +161,7 @@ namespace WindowsFormsApp1
             // 
             this.answer_label.AutoSize = true;
             this.answer_label.Enabled = false;
-            this.answer_label.Location = new System.Drawing.Point(116, 171);
+            this.answer_label.Location = new System.Drawing.Point(115, 155);
             this.answer_label.Name = "answer_label";
             this.answer_label.Size = new System.Drawing.Size(29, 12);
             this.answer_label.TabIndex = 7;
@@ -274,12 +275,14 @@ namespace WindowsFormsApp1
             // 
             // result_num
             // 
-            this.result_num.Location = new System.Drawing.Point(82, 212);
+            this.result_num.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.result_num.Enabled = false;
+            this.result_num.Location = new System.Drawing.Point(82, 201);
             this.result_num.Multiline = true;
             this.result_num.Name = "result_num";
             this.result_num.ReadOnly = true;
             this.result_num.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.result_num.Size = new System.Drawing.Size(100, 22);
+            this.result_num.Size = new System.Drawing.Size(115, 43);
             this.result_num.TabIndex = 4;
             // 
             // comboBox1

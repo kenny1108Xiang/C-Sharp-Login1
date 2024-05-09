@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
         private int guess_answer;
         private int count;
         private int user_answer;
-        
+
         public MainForm()
         {
             InitializeComponent();
@@ -33,8 +33,7 @@ namespace WindowsFormsApp1
             UpdateUserInfo();
             comboBox1.SelectedIndex = 0;
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            result_num.AutoSize = false;
-            result_num.MaximumSize = new Size(200, 0);
+            result_num.AutoSize = true;
         }
 
         private void quit_button_Click(object sender, EventArgs e)
@@ -94,7 +93,7 @@ namespace WindowsFormsApp1
                 return;
             }
 
-            if (minNum >= maxNum || count <= 0 || minNum <=0 || maxNum <= 0)
+            if (minNum >= maxNum || count <= 0 || minNum <= 0 || maxNum <= 0)
             {
                 MessageBox.Show("輸入的範圍值有誤", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Clear_TextBox();
@@ -109,7 +108,7 @@ namespace WindowsFormsApp1
 
             int seed = (int)DateTime.Now.Ticks;
             Random random = new Random(seed);
-            
+
             guess_answer = random.Next(minNum, maxNum + 1);
             tableLayoutPanel2.Enabled = false;
             guessData_get.Enabled = false;
@@ -240,9 +239,9 @@ namespace WindowsFormsApp1
                 randomNumbers.Sort();
             }
 
-            result_num.Visible = true;  
-            result_num.Text = $"{minNum}~{maxNum}抽{count}個[" + string.Join(", ", randomNumbers) + "]";
-            
+            result_num.Visible = true;
+            result_num.Text = $"{minNum}~{maxNum}抽{count}個\r\n[" + string.Join(", ", randomNumbers) + "]";
+
         }
 
     }
