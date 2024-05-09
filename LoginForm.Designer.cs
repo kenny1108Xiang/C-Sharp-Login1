@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login_Form));
             this.Account_label = new System.Windows.Forms.Label();
             this.Password_label = new System.Windows.Forms.Label();
             this.Show_password = new System.Windows.Forms.Button();
@@ -40,8 +41,10 @@
             this.Password_get = new System.Windows.Forms.MaskedTextBox();
             this.Account_get = new System.Windows.Forms.MaskedTextBox();
             this.progressBar_Login = new System.Windows.Forms.ProgressBar();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Account_label
@@ -173,11 +176,23 @@
             this.progressBar_Login.TabIndex = 14;
             this.progressBar_Login.Visible = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(78, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(228, 139);
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
+            // 
             // Login_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 511);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.progressBar_Login);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -191,6 +206,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -209,6 +225,7 @@
         private System.Windows.Forms.MaskedTextBox Password_get;
         private System.Windows.Forms.MaskedTextBox Account_get;
         private System.Windows.Forms.ProgressBar progressBar_Login;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
