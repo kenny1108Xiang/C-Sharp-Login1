@@ -50,23 +50,26 @@
             // Account_label
             // 
             this.Account_label.AutoSize = true;
+            this.Account_label.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Account_label.Location = new System.Drawing.Point(3, 0);
             this.Account_label.Name = "Account_label";
-            this.Account_label.Size = new System.Drawing.Size(44, 12);
+            this.Account_label.Size = new System.Drawing.Size(81, 21);
             this.Account_label.TabIndex = 0;
             this.Account_label.Text = "Account";
             // 
             // Password_label
             // 
             this.Password_label.AutoSize = true;
+            this.Password_label.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Password_label.Location = new System.Drawing.Point(3, 71);
             this.Password_label.Name = "Password_label";
-            this.Password_label.Size = new System.Drawing.Size(48, 12);
+            this.Password_label.Size = new System.Drawing.Size(92, 25);
             this.Password_label.TabIndex = 1;
             this.Password_label.Text = "Password";
             // 
             // Show_password
             // 
+            this.Show_password.Font = new System.Drawing.Font("Segoe Script", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Show_password.Location = new System.Drawing.Point(273, 246);
             this.Show_password.Name = "Show_password";
             this.Show_password.Size = new System.Drawing.Size(52, 23);
@@ -77,6 +80,7 @@
             // 
             // Hide_password
             // 
+            this.Hide_password.Font = new System.Drawing.Font("Segoe Script", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Hide_password.Location = new System.Drawing.Point(273, 246);
             this.Hide_password.Name = "Hide_password";
             this.Hide_password.Size = new System.Drawing.Size(52, 23);
@@ -88,6 +92,7 @@
             // 
             // Login_button
             // 
+            this.Login_button.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Login_button.Location = new System.Drawing.Point(3, 3);
             this.Login_button.Name = "Login_button";
             this.Login_button.Size = new System.Drawing.Size(115, 36);
@@ -114,6 +119,7 @@
             // 
             // Quit_button
             // 
+            this.Quit_button.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Quit_button.Location = new System.Drawing.Point(3, 87);
             this.Quit_button.Name = "Quit_button";
             this.Quit_button.Size = new System.Drawing.Size(115, 38);
@@ -124,6 +130,7 @@
             // 
             // Register_button
             // 
+            this.Register_button.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Register_button.Location = new System.Drawing.Point(3, 45);
             this.Register_button.Name = "Register_button";
             this.Register_button.Size = new System.Drawing.Size(115, 36);
@@ -192,6 +199,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 511);
+            this.ControlBox = false;
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.progressBar_Login);
             this.Controls.Add(this.tableLayoutPanel2);

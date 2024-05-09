@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
         private int guess_answer;
         private int count;
         private int user_answer;
-
+        private readonly List<int> randomNumbers = new List<int>();
         public MainForm()
         {
             InitializeComponent();
@@ -175,7 +175,7 @@ namespace WindowsFormsApp1
                 e.Handled = true; // 取消输入
             }
         }
-        private List<int> randomNumbers = new List<int>();
+        
         private void commit2_Click(object sender, EventArgs e)
         {
             // 清空 randomNumbers 列表，以便重新抽取新的隨機數字
