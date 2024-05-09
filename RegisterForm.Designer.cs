@@ -65,38 +65,38 @@
             this.tableLayoutPanel1.Controls.Add(this.password_label, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.name_get, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.Check_password_label, 0, 3);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 147);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(63, 150);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 53.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46.66667F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(360, 188);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(286, 188);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // checkPassword_get
             // 
-            this.checkPassword_get.Location = new System.Drawing.Point(102, 138);
+            this.checkPassword_get.Location = new System.Drawing.Point(82, 138);
             this.checkPassword_get.Name = "checkPassword_get";
-            this.checkPassword_get.Size = new System.Drawing.Size(100, 22);
+            this.checkPassword_get.Size = new System.Drawing.Size(125, 22);
             this.checkPassword_get.TabIndex = 7;
             this.checkPassword_get.UseSystemPasswordChar = true;
             this.checkPassword_get.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.account_get_KeyPress);
             // 
             // password_get
             // 
-            this.password_get.Location = new System.Drawing.Point(102, 98);
+            this.password_get.Location = new System.Drawing.Point(82, 98);
             this.password_get.Name = "password_get";
-            this.password_get.Size = new System.Drawing.Size(100, 22);
+            this.password_get.Size = new System.Drawing.Size(125, 22);
             this.password_get.TabIndex = 6;
             this.password_get.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.account_get_KeyPress);
             // 
             // account_get
             // 
-            this.account_get.Location = new System.Drawing.Point(102, 54);
+            this.account_get.Location = new System.Drawing.Point(82, 54);
             this.account_get.Name = "account_get";
-            this.account_get.Size = new System.Drawing.Size(100, 22);
+            this.account_get.Size = new System.Drawing.Size(125, 22);
             this.account_get.TabIndex = 5;
             this.account_get.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.account_get_KeyPress);
             // 
@@ -129,9 +129,9 @@
             // 
             // name_get
             // 
-            this.name_get.Location = new System.Drawing.Point(102, 3);
+            this.name_get.Location = new System.Drawing.Point(82, 3);
             this.name_get.Name = "name_get";
-            this.name_get.Size = new System.Drawing.Size(100, 22);
+            this.name_get.Size = new System.Drawing.Size(125, 22);
             this.name_get.TabIndex = 4;
             this.name_get.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.name_get_KeyPress);
             // 
@@ -140,7 +140,7 @@
             this.Check_password_label.AutoSize = true;
             this.Check_password_label.Location = new System.Drawing.Point(3, 135);
             this.Check_password_label.Name = "Check_password_label";
-            this.Check_password_label.Size = new System.Drawing.Size(81, 12);
+            this.Check_password_label.Size = new System.Drawing.Size(48, 24);
             this.Check_password_label.TabIndex = 3;
             this.Check_password_label.Text = "Check Password";
             // 

@@ -101,8 +101,7 @@ namespace WindowsFormsApp1
                 {
                     connection.Open();
 
-                    // Check if the name already exists in the database
-                    string checkNameQuery = "SELECT COUNT(*) FROM Data WHERE name = @name";
+                    string checkNameQuery = "SELECT COUNT(*) FROM Data WHERE name = @name"; //先確認是否有相同的name
                     using (SQLiteCommand checkNameCommand = new SQLiteCommand(checkNameQuery, connection))
                     {
                         checkNameCommand.Parameters.AddWithValue("@name", name);
