@@ -18,6 +18,7 @@ namespace WindowsFormsApp1
     {
         public static string UserName { get; set; }
         public static string UserOp { get; set; }
+        public static string Password { get; set; }
 
         public static string connectionString { get; } = "Data Source=Data.db;Version=3;";
         public Login_Form()
@@ -80,6 +81,7 @@ namespace WindowsFormsApp1
 
                                     Login_Form.UserName = name;
                                     Login_Form.UserOp = op;
+                                    Login_Form.Password = password;
 
                                     MessageBox.Show($"登入成功，歡迎 {name}，您的操作權限是 {op}", "Log In Suceesfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     Clear_TextBox();

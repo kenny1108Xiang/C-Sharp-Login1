@@ -60,12 +60,15 @@ namespace WindowsFormsApp1
             this.minNum_label3 = new System.Windows.Forms.Label();
             this.minNum_get2 = new System.Windows.Forms.MaskedTextBox();
             this.count_label = new System.Windows.Forms.Label();
+            this.Setting_tabPage = new System.Windows.Forms.TabPage();
+            this.Modify_button = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.main_tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.Setting_tabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // userName_label
@@ -126,6 +129,7 @@ namespace WindowsFormsApp1
             // 
             this.main_tabControl.Controls.Add(this.tabPage1);
             this.main_tabControl.Controls.Add(this.tabPage2);
+            this.main_tabControl.Controls.Add(this.Setting_tabPage);
             this.main_tabControl.Location = new System.Drawing.Point(40, 131);
             this.main_tabControl.Name = "main_tabControl";
             this.main_tabControl.SelectedIndex = 0;
@@ -379,6 +383,28 @@ namespace WindowsFormsApp1
             this.count_label.TabIndex = 4;
             this.count_label.Text = "抽取個數";
             // 
+            // Setting_tabPage
+            // 
+            this.Setting_tabPage.Controls.Add(this.Modify_button);
+            this.Setting_tabPage.Location = new System.Drawing.Point(4, 22);
+            this.Setting_tabPage.Name = "Setting_tabPage";
+            this.Setting_tabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.Setting_tabPage.Size = new System.Drawing.Size(305, 258);
+            this.Setting_tabPage.TabIndex = 2;
+            this.Setting_tabPage.Text = "帳號設定";
+            this.Setting_tabPage.UseVisualStyleBackColor = true;
+            // 
+            // Modify_button
+            // 
+            this.Modify_button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Modify_button.Location = new System.Drawing.Point(102, 207);
+            this.Modify_button.Name = "Modify_button";
+            this.Modify_button.Size = new System.Drawing.Size(75, 23);
+            this.Modify_button.TabIndex = 0;
+            this.Modify_button.Text = "修改";
+            this.Modify_button.UseVisualStyleBackColor = true;
+            this.Modify_button.Click += new System.EventHandler(this.Modify_button_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -405,6 +431,7 @@ namespace WindowsFormsApp1
             this.tabPage2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.Setting_tabPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -440,5 +467,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Button commit2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox result_num;
+        private TabPage Setting_tabPage;
+        private System.Windows.Forms.Button Modify_button;
     }
 }

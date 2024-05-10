@@ -244,5 +244,11 @@ namespace WindowsFormsApp1
 
         }
 
+        private void Modify_button_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ModifyForm modifyForm = new ModifyForm();
+            modifyForm.Show();
+        }
     }
 }
