@@ -123,6 +123,7 @@ namespace WindowsFormsApp1
             commit.Enabled = true;
             answer_label.Enabled = true;
             this.tabPage2.Parent = null;
+            Setting_tabPage.Parent = null;
             MessageBox.Show("開始作答", "輸入成功");
         }
 
@@ -141,6 +142,7 @@ namespace WindowsFormsApp1
                 Clear_TextBox();
                 answer_get.Clear();
                 this.tabPage2.Parent = this.main_tabControl;
+                this.Setting_tabPage.Parent = this.main_tabControl;
                 return;
             }
             else
@@ -157,6 +159,7 @@ namespace WindowsFormsApp1
                     Clear_TextBox();
                     answer_get.Clear();
                     this.tabPage2.Parent = this.main_tabControl;
+                    this.Setting_tabPage.Parent = this.main_tabControl;
                     return;
                 }
                 else
