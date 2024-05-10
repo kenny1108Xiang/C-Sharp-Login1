@@ -28,7 +28,14 @@ namespace WindowsFormsApp1
         {
             Modify_UserNameForm modify_UserNameForm = new Modify_UserNameForm();
             modify_UserNameForm.Show();
-            this.Enabled = false;
+            this.Close();
+        }
+
+        private void Modify_password_Click(object sender, EventArgs e)
+        {
+            Modify_PasswordForm modify_PasswordForm = new Modify_PasswordForm();
+            modify_PasswordForm.Show();
+            this.Close();
         }
     }
 }

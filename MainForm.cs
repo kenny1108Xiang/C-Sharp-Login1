@@ -24,7 +24,14 @@ namespace WindowsFormsApp1
 
         public void UpdateUserInfo()
         {
-            userName_label.Text = "使用者名稱：" + Login_Form.UserName;
+            if (Modify_UserNameForm.upDate_Name == null)
+            {
+                userName_label.Text = "使用者名稱：" + Login_Form.UserName;
+            }
+            else
+            {
+                userName_label.Text = "使用者名稱：" + Modify_UserNameForm.upDate_Name;
+            }
             userOp_label.Text = "使用者權限：" + Login_Form.UserOp;
         }
 

@@ -61,6 +61,7 @@
             this.Modify_password.TabIndex = 2;
             this.Modify_password.Text = "修改使用者密碼";
             this.Modify_password.UseVisualStyleBackColor = true;
+            this.Modify_password.Click += new System.EventHandler(this.Modify_password_Click);
             // 
             // ModifyForm
             // 

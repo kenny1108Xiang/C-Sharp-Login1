@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SQLite;
 
 namespace WindowsFormsApp1
 {
     public partial class Modify_UserNameForm : Form
     {
+        public static string upDate_Name;
+        private int Error_Count = 0;
         public Modify_UserNameForm()
         {
             InitializeComponent();
@@ -73,11 +76,11 @@ namespace WindowsFormsApp1
             }
         }
 
-        private int Error_Count = 0;
-        private void Modify_userName_button_Click(object sender, EventArgs e)
+        
+        private async void Modify_userName_button_Click(object sender, EventArgs e)
         { 
             string check_Password = Check_PassWord_get.Text;
-            string upDate_Name = upDate_UserName_get.Text;
+            upDate_Name = upDate_UserName_get.Text;
             var Check_Result = Check_TextBox(check_Password, upDate_Name);
 
             if (Check_Result.Item1 == 2) //兩者皆為空
@@ -94,7 +97,7 @@ namespace WindowsFormsApp1
             }
             else
             { 
-                if (Login_Form.Password != check_Password)
+                if (Login_Form.Password != check_Password) //輸入錯誤的密碼
                 {
                     MessageBox.Show("密碼錯誤", "驗證失敗", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Clear_TextBox();
@@ -102,6 +105,53 @@ namespace WindowsFormsApp1
                     Error_Quit(Error_Count); //確認錯誤是否達到三次
                     return;
                 }
+                else if (Login_Form.UserName == upDate_Name)
+                {
+                    MessageBox.Show("不可與上個名稱重複", "輸入相同名稱", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Clear_TextBox();
+                    Error_Count++;
+                    Error_Quit(Error_Count); //確認錯誤是否達到三次
+                    return;
+                }
+
+                string connectionString = "Data Source=Data.db;Version=3;";
+                try
+                {
+                    using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                    {
+                        await connection.OpenAsync();
+
+                        string updateQuery = "UPDATE Data SET name = @name WHERE password = @password";
+                        using (SQLiteCommand command = new SQLiteCommand(updateQuery, connection))
+                        {
+                            command.Parameters.AddWithValue("@name", upDate_Name);
+                            command.Parameters.AddWithValue("@password", check_Password);
+
+                            int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show("使用者名稱已成功更新", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MainForm mainForm = new MainForm();
+                                mainForm.Show();
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("未更新使用者名稱", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MainForm mainForm = new MainForm();
+                                mainForm.Show();
+                                this.Close();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"更新使用者名稱時發生錯誤：{ex.Message}", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
             }
         }
 

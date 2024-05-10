@@ -109,6 +109,12 @@
     <Compile Include="ModifyForm.Designer.cs">
       <DependentUpon>ModifyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modify_PasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modify_PasswordForm.Designer.cs">
+      <DependentUpon>Modify_PasswordForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modify_UserNameForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ModifyForm.resx">
       <DependentUpon>ModifyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modify_PasswordForm.resx">
+      <DependentUpon>Modify_PasswordForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modify_UserNameForm.resx">
       <DependentUpon>Modify_UserNameForm.cs</DependentUpon>

@@ -87,8 +87,8 @@ namespace WindowsFormsApp1
                                     Clear_TextBox();
 
                                     MainForm mainForm = new MainForm();
-                                    this.Hide();
                                     mainForm.Show();
+                                    this.Hide();
                                 }
                                 else
                                 {
