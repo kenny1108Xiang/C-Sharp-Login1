@@ -115,7 +115,6 @@ namespace WindowsFormsApp1
 
             int seed = (int)DateTime.Now.Ticks;
             Random random = new Random(seed);
-
             guess_answer = random.Next(minNum, maxNum + 1);
             tableLayoutPanel2.Enabled = false;
             guessData_get.Enabled = false;

@@ -59,43 +59,42 @@ namespace WindowsFormsApp1
                     progressBar_Login.Value = i;
                     System.Threading.Thread.Sleep(80); // 模擬花費時間
                 }
-                progressBar_Login.Visible = false;
 
+                progressBar_Login.Visible = false;
+                SQLiteConnection connection = null;
                 try
                 {
-                    using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                    connection = new SQLiteConnection(connectionString);
+                    await connection.OpenAsync();
+
+                    using (SQLiteCommand command = new SQLiteCommand(sql, connection))
                     {
-                        await connection.OpenAsync();
+                        command.Parameters.AddWithValue("@account", account);
+                        command.Parameters.AddWithValue("@password", password);
 
-                        using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                        using (SQLiteDataReader reader = (SQLiteDataReader)await command.ExecuteReaderAsync())
                         {
-                            command.Parameters.AddWithValue("@account", account);
-                            command.Parameters.AddWithValue("@password", password);
-
-                            using (SQLiteDataReader reader = (SQLiteDataReader)command.ExecuteReader())
+                            if (reader.Read())
                             {
-                                if (reader.Read())
-                                {
-                                    string name = reader["name"].ToString();
-                                    string op = reader["op"].ToString();
+                                string name = reader["name"].ToString();
+                                string op = reader["op"].ToString();
 
-                                    Login_Form.UserName = name;
-                                    Login_Form.UserOp = op;
-                                    Login_Form.Password = password;
+                                Login_Form.UserName = name;
+                                Login_Form.UserOp = op;
+                                Login_Form.Password = password;
 
-                                    MessageBox.Show($"登入成功，歡迎 {name}，您的操作權限是 {op}", "Log In Suceesfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    Clear_TextBox();
+                                MessageBox.Show($"登入成功，歡迎 {name}，您的操作權限是 {op}", "Log In Suceesfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                Clear_TextBox();
 
-                                    MainForm mainForm = new MainForm();
-                                    mainForm.Show();
-                                    this.Hide();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("帳號或密碼錯誤，請重新輸入", "Log In Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    Clear_TextBox();
-                                    Account_get.Focus();
-                                }
+                                MainForm mainForm = new MainForm();
+                                mainForm.Show();
+                                this.Hide();
+                            }
+                            else
+                            {
+                                MessageBox.Show("帳號或密碼錯誤，請重新輸入", "Log In Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                Clear_TextBox();
+                                Account_get.Focus();
                             }
                         }
                     }
@@ -106,6 +105,15 @@ namespace WindowsFormsApp1
                     Clear_TextBox();
                     Account_get.Focus();
                 }
+                finally
+                {
+                    // 確保無論如何都會關閉連接
+                    if (connection != null && connection.State != ConnectionState.Closed)
+                    {
+                        connection.Close();
+                    }
+                }
+
             }
         }
 

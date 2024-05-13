@@ -134,51 +134,55 @@ namespace WindowsFormsApp1
             progressBar1.Visible = false;
 
             string connectionString = "Data Source=Data.db;Version=3;";
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            SQLiteConnection connection = null;
+
+            try
             {
-                try
+                connection = new SQLiteConnection(connectionString);
+                await connection.OpenAsync();
+
+                string checkNameQuery = "SELECT COUNT(*) FROM Data WHERE name = @name";
+                using (SQLiteCommand checkNameCommand = new SQLiteCommand(checkNameQuery, connection))
                 {
-                    await connection.OpenAsync();
+                    checkNameCommand.Parameters.AddWithValue("@name", name);
+                    int nameCount = Convert.ToInt32(await checkNameCommand.ExecuteScalarAsync());
 
-                    string checkNameQuery = "SELECT COUNT(*) FROM Data WHERE name = @name";
-                    using (SQLiteCommand checkNameCommand = new SQLiteCommand(checkNameQuery, connection))
+                    if (nameCount > 0)
                     {
-                        checkNameCommand.Parameters.AddWithValue("@name", name);
-                        int nameCount = Convert.ToInt32(await checkNameCommand.ExecuteScalarAsync());
-
-                        if (nameCount > 0)
-                        {
-                            MessageBox.Show("已經有相同名稱", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            Clear_TextBox("name");
-                            return;
-                        }
-                    }
-
-                    string insertQuery = "INSERT INTO Data (name, account, password) VALUES (@name, @account, @password)";
-                    using (SQLiteCommand insertCommand = new SQLiteCommand(insertQuery, connection))
-                    {
-                        insertCommand.Parameters.AddWithValue("@name", name);
-                        insertCommand.Parameters.AddWithValue("@account", account);
-                        insertCommand.Parameters.AddWithValue("@password", password);
-
-                        await insertCommand.ExecuteNonQueryAsync();
-
-                        MessageBox.Show("註冊成功", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Clear_TextBox();
-                        this.Close();
-                        Login_Form login_Form = new Login_Form();
-                        login_Form.Show();
+                        MessageBox.Show("已經有相同名稱", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Clear_TextBox("name");
+                        return;
                     }
                 }
-                catch (Exception ex)
+
+                string insertQuery = "INSERT INTO Data (name, account, password) VALUES (@name, @account, @password)";
+                using (SQLiteCommand insertCommand = new SQLiteCommand(insertQuery, connection))
                 {
-                    MessageBox.Show($"註冊時發生錯誤：{ex.Message}", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    insertCommand.Parameters.AddWithValue("@name", name);
+                    insertCommand.Parameters.AddWithValue("@account", account);
+                    insertCommand.Parameters.AddWithValue("@password", password);
+
+                    await insertCommand.ExecuteNonQueryAsync();
+
+                    MessageBox.Show("註冊成功", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Clear_TextBox();
+                    this.Close();
+                    Login_Form login_Form = new Login_Form();
+                    login_Form.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"註冊時發生錯誤：{ex.Message}", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // 確保始終關閉資料庫連接
+                if (connection != null && connection.State != ConnectionState.Closed)
+                {
+                    connection.Close();
                 }
             }
         }
-
-
-
-
     }
 }

@@ -115,34 +115,44 @@ namespace WindowsFormsApp1
                 }
 
                 string connectionString = "Data Source=Data.db;Version=3;";
+                SQLiteConnection connection = null;
+
                 try
                 {
-                    using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                    connection = new SQLiteConnection(connectionString);
+                    await connection.OpenAsync();
+
+                    string updateQuery = "UPDATE Data SET name = @name WHERE password = @password";
+                    using (SQLiteCommand command = new SQLiteCommand(updateQuery, connection))
                     {
-                        await connection.OpenAsync();
+                        command.Parameters.AddWithValue("@name", upDate_Name);
+                        command.Parameters.AddWithValue("@password", check_Password);
 
-                        string updateQuery = "UPDATE Data SET name = @name WHERE password = @password";
-                        using (SQLiteCommand command = new SQLiteCommand(updateQuery, connection))
+                        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                        if (rowsAffected > 0)
                         {
-                            command.Parameters.AddWithValue("@name", upDate_Name);
-                            command.Parameters.AddWithValue("@password", check_Password);
+                            MessageBox.Show("使用者名稱已成功更新", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            int rowsAffected = await command.ExecuteNonQueryAsync();
-
-                            if (rowsAffected > 0)
+                            // UI 操作要在主執行緒上執行
+                            this.Invoke((MethodInvoker)delegate
                             {
-                                MessageBox.Show("使用者名稱已成功更新", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 MainForm mainForm = new MainForm();
                                 mainForm.Show();
                                 this.Close();
-                            }
-                            else
+                            });
+                        }
+                        else
+                        {
+                            MessageBox.Show("未更新使用者名稱", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            // UI 操作要在主執行緒上執行
+                            this.Invoke((MethodInvoker)delegate
                             {
-                                MessageBox.Show("未更新使用者名稱", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 MainForm mainForm = new MainForm();
                                 mainForm.Show();
                                 this.Close();
-                            }
+                            });
                         }
                     }
                 }
@@ -150,8 +160,14 @@ namespace WindowsFormsApp1
                 {
                     MessageBox.Show($"更新使用者名稱時發生錯誤：{ex.Message}", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-
+                finally
+                {
+                    // 確保無論如何都會關閉資料庫連接
+                    if (connection != null && connection.State != ConnectionState.Closed)
+                    {
+                        connection.Close();
+                    }
+                }
             }
         }
 

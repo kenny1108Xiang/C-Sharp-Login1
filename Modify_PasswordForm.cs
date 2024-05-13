@@ -71,43 +71,48 @@ namespace WindowsFormsApp1
             }
 
             string connectionString = "Data Source=Data.db;Version=3;";
+            SQLiteConnection connection = null;
             try
             {
-                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                connection = new SQLiteConnection(connectionString);
+                await connection.OpenAsync();
+
+                string updateQuery = "UPDATE Data SET password = @password WHERE name = @name";
+                using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
                 {
-                    await connection.OpenAsync();
+                    updateCommand.Parameters.AddWithValue("@password", New_Password);
+                    updateCommand.Parameters.AddWithValue("@name", Login_Form.UserName);
 
-                    string updateQuery = "UPDATE Data SET password = @password WHERE name = @name";
-                    using (SQLiteCommand command = new SQLiteCommand(updateQuery, connection))
+                    int rowsAffected = await updateCommand.ExecuteNonQueryAsync();
+
+                    if (rowsAffected > 0)
                     {
-                        command.Parameters.AddWithValue("@password", New_Password);
-                        command.Parameters.AddWithValue("@name", Login_Form.UserName);
-
-                        int rowsAffected = await command.ExecuteNonQueryAsync();
-
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("密碼修改成功", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            Login_Form.Password = New_Password;
-                            MainForm mainForm = new MainForm();
-                            mainForm.Show();
-                            this.Close();
-                            return;
-                        }
-                        else
-                        {
-                            MessageBox.Show("無法修改密碼", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            MainForm mainForm = new MainForm();
-                            mainForm.Show();
-                            this.Close();
-                            return;
-                        }
+                        MessageBox.Show("密碼修改成功，請重新登入", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Login_Form login_Form = new Login_Form();
+                        login_Form.Show();
+                        this.Close();
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("無法修改密碼", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MainForm mainForm = new MainForm();
+                        mainForm.Show();
+                        this.Close();
+                        return;
                     }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"修改密碼時發生錯誤：{ex.Message}", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (connection != null && connection.State != ConnectionState.Closed)
+                {
+                    connection.Close();
+                }
             }
 
         }
