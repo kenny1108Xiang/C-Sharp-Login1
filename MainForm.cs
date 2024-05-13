@@ -19,7 +19,6 @@ namespace WindowsFormsApp1
         public MainForm()
         {
             InitializeComponent();
-            commit2.Click += commit2_Click;
         }
 
         public void UpdateUserInfo()
@@ -184,15 +183,15 @@ namespace WindowsFormsApp1
                 e.Handled = true; // 取消输入
             }
         }
-        
+
         private void commit2_Click(object sender, EventArgs e)
         {
             // 清空 randomNumbers 列表，以便重新抽取新的隨機數字
             randomNumbers.Clear();
 
-
             // 其餘部分保持不變
             int minNum, maxNum, count;
+            
             try
             {
                 minNum = int.Parse(minNum_get2.Text);
